@@ -1,0 +1,76 @@
+:host{
+    direction: rtl;
+}
+
+/*<!--nav bar-->*/
+
+
+nav{
+   text-align: right;
+   background-color: gold;
+   height: 65px;
+}
+
+.nav_a{
+    margin-right: 20px;
+    color: white;
+    font-weight: bolder;
+    margin-left: 25px;
+    font-size: 18px;
+}
+
+.fa-user{
+    font-size: 15px;
+    color: white;
+    border: solid white;
+    border-width: 1px;
+    border-radius: 100%;
+    padding: 8px;
+    margin-right: 10px;
+    
+   
+}
+
+
+#nav2{
+    position: absolute;
+    margin-top: 10px;
+}
+
+.fa-shopping-cart{
+    font-size: 15px;
+    color: white;
+    border: solid white;
+    border-width: 1px;
+    border-radius: 100%;
+    padding: 8px;
+    margin-right: 10px;
+}
+
+#login_bar{
+    margin-right: 0%;
+    background-color:white;
+    width: 100px;
+    float: right;
+    text-align: center;
+    border:solid gold;
+    border-width: 2px;
+    
+}
+
+.navP{
+    margin: 5px auto;
+    color: gold;
+    font-weight: bold;
+
+}
+#userIcon:hover~#login_bar{
+    color: red;
+    background-color: royalblue !important;
+}
+span{
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+/*-----------------------------------------------------------------------------*/

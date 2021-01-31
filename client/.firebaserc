@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "soccer-shirts": {
+      "hosting": {
+        "client": [
+          "soccer-shirts"
+        ]
+      }
+    }
+  }
+}
