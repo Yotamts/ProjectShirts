@@ -3,7 +3,43 @@
 <app-nav-bar></app-nav-bar>
 
 
+<div id="light" class="white_content"> <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" style="display: block; color: black; "><i class="far fa-times-circle"></i></a>
+  <img src={{tempshirt.img}} style="height: 350px; width: 350px;" style="float: left; height: 250px; width: 250px;" class="pic">
+  <h1 style="font-size:29px; text-decoration: underline;">{{tempshirt.title}}</h1>
+  
+  <p style="font-weight: bolder;" >₪{{tempshirt.price}}  </p>
+  <form>
+    מידה
+    <select class="shirtSize" aria-label="Default select example"  name="shirtSize" id="shirtSize" #shirtSize style="direction: rtl; margin-right: 10px;"  >
+      <option value="small" >S</option>
+      <option value="medium">M </option>
+      <option value="large">L </option>
+      <option value="xl"> XL</option>
+      <option value="xxl"> XXL</option>
+      <option value="xxxl">XXXL </option>
+    </select>
+    <br/>
+    מספר
+    <input type="number" min="0" max="99" value="0" id="number"  style="width: 50px; margin-right: 2px; "> 
+    <br/>
+    שם
+    <input type="text"  id="name" style="margin-right: 18px;"> 
+    <br/>
+     שרוול ארוך
+     <input type="checkbox" value="long" id="long" > 
+   
+     <button type="button"  class="btn btn-outline-warning" style="display: block; margin-top: 20px; margin-right: 248px;" [disabled]=!tepmBool> <i class="fas fa-shopping-cart"   ></i>הוסף לסל </button>
+     <p *ngIf="!tepmBool" id="stock2" style="color: red;text-align: center; " >אזל המלאי</p>
+  </form>
+   
+
+   
+</div>
+<div id="fade" class="black_overlay"></div>
+
+
 <div id="theme" >
+  
   <img src="assets/img/logo.png" id="logo" >
 </div>
 <hr style="height:9px;border-width:5;color:rgb(255, 217, 0);background-color:gold; margin-top: 0px; opacity: unset;" >
@@ -12,17 +48,23 @@
 
 
 <div id="catalogDiv">
+ 
   <div id="catalog">
+    
+    
   
-    <div *ngFor="let shirt of shirts"  class="col-md-3 products">
-      <img src={{shirt.img}} class="catalogIMG">
-      <p>{{shirt.title}}</p>
-    </div>
+    <app-product *ngFor="let shirt of filterShirts" [shirt]=shirt class="col-md-3 products" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'" (click)="changeTempSirt(shirt)"></app-product>
 </div>
 </div>
 <div id="coatalogOptions" >
   <form>
     
+    <select class="form-select" aria-label="Default select example"  name="price" id="price_slct" #price_slct style="direction: rtl;" (change)="priceSort(price_slct.value)" >
+      <option value="" disabled selected style="font-weight: bold;">מיין:</option>
+      <option value="highPrice">מהמחיר הגבוה לנמוך</option>
+      <option value="lowPrice" >מהמחיר הנמוך לגבוה </option>
+     
+    </select>
     <select class="form-select" aria-label="Default select example"  name="leagues" id="leagues_slct" #leagues_slct style="direction: rtl;" (change)="selectLeague(leagues_slct.value)" >
       <option value="" disabled selected style="font-weight: bold;">סנן לפי:</option>
       <option value="all">הכל</option>
@@ -79,6 +121,8 @@
     <button type="button" class="btn btn-outline-light" style="font-weight: bolder; border-width: 5px; width: 100px; display: none; margin: auto; margin-top: 30px;" id="btn1" >סנן</button>
   </form>
   </div>
+
+
 
 
 

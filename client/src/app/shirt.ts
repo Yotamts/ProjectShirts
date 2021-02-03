@@ -1,6 +1,7 @@
 export class Shirt {
     
     id:number;
+    title:string;
     league:string;
     team:string;
     price:number;

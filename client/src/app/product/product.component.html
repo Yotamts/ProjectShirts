@@ -1,1 +1,7 @@
-<p>product works!</p>
+<div id="imgDiv">
+    <p *ngIf="!shirt.in_stock" id="stock" >אזל המלאי</p>
+    <img src={{shirt.img}} class="catalogIMG">
+</div>
+
+<p id="title">{{shirt.title}}</p>
+<p style="font-weight: bolder;" id="price">₪{{shirt.price}}  </p>

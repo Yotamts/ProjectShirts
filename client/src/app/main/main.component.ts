@@ -18,13 +18,24 @@ import { UsersService } from '../users.service';
 export class MainComponent implements OnInit {
   users:User[]=[];
   shirts:Shirt[]=[];
+  filterShirts:Shirt[]=[];
   orders:Order[]=[];
 
+  tempshirt:Shirt={id:1,title:"temp",league:"temp", team:"tepm", price:0, goalkeeper:false,img:"assets/img/shirts/italy/milan_away_20.jpg",in_stock:true,size:"m",num:10,stock:20,name:"tepm",long_sleeves:false,quantity:2};
+  tepmBool=true;
+
+  changeTempSirt(shirt:Shirt){
+    this.tempshirt=shirt;
+    this.tepmBool=shirt.in_stock;
+  }
+priceSort(v){
+  if(v=="lowPrice") this.filterShirts.sort(function(a, b){return a.price - b.price});
+  if(v=="highPrice") this.filterShirts.sort(function(a, b){return b.price - a.price});
   
+}
 
  selectLeague(value){
-   
-     
+  this.filterShirts=this.shirts.filter(a=>a.league==value);
    if(value=="spain"){
      (document.getElementById("englandCheckBox")).style.display="none";
      (document.getElementById("franceCheckBox")).style.display="none";
@@ -32,6 +43,7 @@ export class MainComponent implements OnInit {
      (document.getElementById("italyCheckBox")).style.display="none";
      (document.getElementById("spainCheckBox")).style.display="block";
      (document.getElementById("btn1")).style.display="block";
+     
     }
     if(value=="england"){
       (document.getElementById("englandCheckBox")).style.display="block";
@@ -84,6 +96,7 @@ export class MainComponent implements OnInit {
     this.usersApi.getAll().subscribe(users => this.users = users);
     this.ordersApi.getAll().subscribe(orders => this.orders = orders);
     this.shirtsApi.getAll().subscribe(shirts => this.shirts = shirts);
+    this.shirtsApi.getAll().subscribe(shirts => this.filterShirts = shirts);
   }
 
 }
