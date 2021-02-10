@@ -1,0 +1,32 @@
+:host{
+    direction: rtl;
+    text-align: center;
+    
+}
+form{
+    background-color:rgba(255, 255, 255, 0.699);
+    border: solid gold;
+    border-radius: 10%;
+    width: 500px;
+    margin: auto;
+    margin-top: 5px;
+    border-width: 5px;
+}
+
+input{
+    display: block;
+    margin: auto;
+}
+
+textarea{
+    width:450px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+h2{
+    text-decoration: underline;
+}
+span{
+    margin: 5px;
+}

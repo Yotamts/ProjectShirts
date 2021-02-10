@@ -16,6 +16,10 @@ import { from } from 'rxjs';
 import { NgModule } from '@angular/core';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProductComponent } from './product/product.component';
+import { ContactComponent } from './contact/contact.component';
+import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,15 +27,17 @@ import { ProductComponent } from './product/product.component';
     MainComponent,
 NavBarComponent,
     AboutComponent,
-    ProductComponent
+    ProductComponent,
+    ContactComponent,
+    OrderTrackingComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-   
+    FormsModule,
     AngularFireAuthModule,
-    
     HttpClientModule,
     BrowserAnimationsModule,
   

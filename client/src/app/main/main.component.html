@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
 <!--nav bar-->
 <app-nav-bar></app-nav-bar>
 
@@ -65,62 +65,69 @@
       <option value="lowPrice" >מהמחיר הנמוך לגבוה </option>
      
     </select>
-    <select class="form-select" aria-label="Default select example"  name="leagues" id="leagues_slct" #leagues_slct style="direction: rtl;" (change)="selectLeague(leagues_slct.value)" >
+    <select class="form-select" aria-label="Default select example"  name="leagues" id="leagues_slct" #leagues_slct style="direction: rtl;" (change)="selectLeague(leagues_slct.value,price_slct.value)" >
       <option value="" disabled selected style="font-weight: bold;">סנן לפי:</option>
       <option value="all">הכל</option>
-      <option value="england" >הליגה האנגלית</option>
+      <option value="England" >הליגה האנגלית</option>
       <option value="spain">הליגה הספרדית</option>
-      <option value="france">הליגה הצרפתית</option>
+      <option value="France">הליגה הצרפתית</option>
       <option value="germany">הליגה הגרמנית</option>
       <option value="italy">הליגה האיטלקית</option>
     </select>
     <div id="englandCheckBox" #dd style="text-align: right; direction: rtl; display: none;" class="CheckBoxes">
-      <input type="checkbox" id="arsenalR" name="arsenalR" value="arsenalR" class="radio">
+      <input type="checkbox" id="arsenalR" name="arsenalR" value="Arsenal" class="radio" [(ngModel)]="filterteams.Arsenal">
       <label for="arsenalR"> ארסנל </label><br>
-      <input type="checkbox" id="manchesterUnitedR" name="manchesterUnitedR" value="manchesterUnitedR" class="radio">
+      <input type="checkbox" id="manchesterUnitedR" name="manchesterUnitedR" value="Manchester United" class="radio" [(ngModel)]="filterteams.ManchesterUnited" >
       <label for="manchesterUnitedR">מנצ'סטר יונייטד  </label><br>
-      <input type="checkbox" id="manchesterCityR" name="manchesterCityR" value="manchesterCityR" class="radio">
+      <input type="checkbox" id="manchesterCityR" name="manchesterCityR" value="manchesterCityR" class="radio"  [(ngModel)]="filterteams.manchesterCity">
       <label for="manchesterCityR">מנצ'סטר סיטי</label><br>
-      <input type="checkbox" id="liverpoolR" name="liverpoolR" value="liverpoolR" class="radio">
+      <input type="checkbox" id="liverpoolR" name="liverpoolR" value="liverpoolR" class="radio"  [(ngModel)]="filterteams.liverpool">
       <label for="liverpoolR">ליברפול</label><br>
     </div>
   
     <div id="franceCheckBox" style="text-align: right; direction: rtl; display: none;" class="CheckBoxes">
-      <input type="checkbox" id="lyonR" name="lyonR" value="lyonR" class="radio">
+      <input type="checkbox" id="lyonR" name="lyonR" value="lyonR" class="radio"  [(ngModel)]="filterteams.lyon">
       <label for="lyonR"> ליון </label><br>
-      <input type="checkbox" id="marseilleR" name="marseilleR" value="marseilleR" class="radio">
+      <input type="checkbox" id="marseilleR" name="marseilleR" value="marseilleR" class="radio"  [(ngModel)]="filterteams.marseille">
       <label for="marseilleR">מארסיי</label><br>
-      <input type="checkbox" id="psgR" name="psgR" value="psgR" class="radio">
+      <input type="checkbox" id="psgR" name="psgR" value="psgR" class="radio"  [(ngModel)]="filterteams.psg">
       <label for="psgR">פ.ס.ז</label><br>
     </div>
   
     <div id="germanyCheckBox" style="text-align: right; direction: rtl; display: none;" class="CheckBoxes">
-      <input type="checkbox" id="bayernR" name="bayernR" value="bayernR" class="radio">
+      <input type="checkbox" id="bayernR" name="bayernR" value="bayernR" class="radio"  [(ngModel)]="filterteams.bayern">
       <label for="bayernR"> באיירן מינכן </label><br>
-      <input type="checkbox" id="dortmundR" name="dortmundR" value="dortmundR" class="radio">
+      <input type="checkbox" id="dortmundR" name="dortmundR" value="dortmundR" class="radio"  [(ngModel)]="filterteams.dortmund">
       <label for="dortmundR">דורטמונד </label><br>
     </div>
   
     <div id="italyCheckBox" style="text-align: right; direction: rtl; display: none;" class="CheckBoxes">
-      <input type="checkbox" id="juventusR" name="juventusR" value="juventusR" class="radio">
+      <input type="checkbox" id="juventusR" name="juventusR" value="juventusR" class="radio"  [(ngModel)]="filterteams.juventus">
       <label for="juventusR"> יובנטוס </label><br>
-      <input type="checkbox" id="millanR" name="millanR" value="millanR" class="radio">
+      <input type="checkbox" id="millanR" name="millanR" value="millanR" class="radio"  [(ngModel)]="filterteams.millan">
       <label for="millanR">מילאן</label><br>
-      <input type="checkbox" id="romaR" name="romaR" value="romaR" class="radio">
+      <input type="checkbox" id="romaR" name="romaR" value="romaR" class="radio"  [(ngModel)]="filterteams.roma">
       <label for="romaR">רומא</label><br>
     </div>
   
     <div id="spainCheckBox" style="text-align: right; direction: rtl; display: none;" class="CheckBoxes">
-      <input type="checkbox" id="atleticoR" name="atleticoR" value="atleticoR" class="radio">
+      <input type="checkbox" id="atleticoR" name="atleticoR" value="atleticoR" class="radio"  [(ngModel)]="filterteams.atletico">
       <label for="atleticoR"> אתלטיקו מדריד </label><br>
-      <input type="checkbox" id="barcelonaR" name="barcelonaR" value="barcelonaR" class="radio">
+      <input type="checkbox" id="barcelonaR" name="barcelonaR" value="barcelonaR" class="radio"  [(ngModel)]="filterteams.barcelona">
       <label for="barcelonaR">ברצלונה</label><br>
-      <input type="checkbox" id="realR" name="realR" value="realR" class="radio">
+      <input type="checkbox" id="realR" name="realR" value="realR" class="radio"  [(ngModel)]="filterteams.real">
       <label for="realR">ריאל מדריד</label><br>
     </div>
-    <button type="button" class="btn btn-outline-light" style="font-weight: bolder; border-width: 5px; width: 100px; display: none; margin: auto; margin-top: 30px;" id="btn1" >סנן</button>
+    <button type="button" class="btn btn-outline-light" style="font-weight: bolder; border-width: 5px; width: 100px; display: none; margin: auto; margin-top: 30px;" id="btn1" (click)="teamsFilter()">סנן</button>
   </form>
   </div>
+ 
+  <div id="div1">
+    <br/>
+    <app-contact-us></app-contact-us>
+  </div>
+  
+  
 
 
 

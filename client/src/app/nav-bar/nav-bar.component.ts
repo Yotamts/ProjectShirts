@@ -18,14 +18,23 @@ export class NavBarComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router, private userService:UserServiceService) { }
 
- guestName='שלום אורח\ת'
+ guestName:String="אורח/ת";
  user=this.userService.getCurrentUser();
  
 
 
   loginWithGoogle() {
     this.auth.googleLogin().then(user => {
-      this.router.navigate(['cart']);
+    //  this.router.navigate(['cart']);
+    });
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        console.log(user.displayName);
+       this.guestName=user.displayName.toString();
+       console.log(this.guestName);
+      } else {
+        // No user is signed in.
+      }
     });
 
     
