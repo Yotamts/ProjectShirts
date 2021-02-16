@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'users', component: UsersComponent},
   {path: 'about', component: AboutComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'ordertracking', component: OrderTrackingComponent},
+  {path: 'ordertracking', component: OrderTrackingComponent, canActivate: [AuthGuard]},
   
 ];
 

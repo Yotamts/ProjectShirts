@@ -1,3 +1,5 @@
+import { Shirt } from "./shirt";
+
 export class User {
     name:String;
     mail:String;
@@ -5,6 +7,6 @@ export class User {
     isGuest:Boolean;
     address:String;
     phone:String;
-    shoppingCart:[];
-    purchases:[];
+    shoppingCart:Shirt[];
+    purchases:Shirt[];
 }

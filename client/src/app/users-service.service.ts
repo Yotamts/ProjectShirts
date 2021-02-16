@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,19 +14,28 @@ export class UserServiceService {
 
 
   constructor(private afAuth: AngularFireAuth) { }
- 
-  getCurrentUser()  :Promise<any>  {
-    return new Promise<any>(
+   online=false;
+  getCurrentUser() {
+    return new Promise(
       (resolve, reject) => {
-        const user = firebase.auth().onAuthStateChanged(
+        const user = this.afAuth.authState.subscribe(
           // tslint:disable-next-line: no-shadowed-variable
-          (user) => {
-            console.log(user);
-            user ? resolve(user) : resolve(null);
-          }
+          user => {
+            resolve(user);
+          //console.log(user.displayName);
+          if(user!= null)
+          this.online=true;
+          else  this.online=false;
+        } , err =>{resolve(null)
+          console.log("null")
+          this.online=false;} 
         );
       }
     );
+  }
+
+  isOnline(){
+return this.online;
   }
 
 }

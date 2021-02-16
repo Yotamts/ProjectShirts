@@ -11,7 +11,7 @@ export class ProductComponent implements OnInit {
   constructor() { }
   @Input() shirt:Shirt;
 
-  in_stock=true;
+  
   
   ngOnInit(): void {
 

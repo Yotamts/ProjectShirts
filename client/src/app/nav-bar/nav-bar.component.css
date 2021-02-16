@@ -72,5 +72,18 @@ span{
     margin-top: 20px;
     margin-right: 10px;
 }
-
+#cartCount{
+    background-color: red;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    position: absolute;
+ text-align: center;
+    font-size: x-small;
+    margin-right: 2px;
+    display: none;
+   
+    
+    
+}
 /*-----------------------------------------------------------------------------*/

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,8 +11,8 @@ import { AboutComponent } from './about/about.component';
 
 
 import { environment } from 'src/environments/environment';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+
+
 import { from } from 'rxjs';
 import { NgModule } from '@angular/core';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -20,6 +21,7 @@ import { ContactComponent } from './contact/contact.component';
 import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FormsModule } from '@angular/forms';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -28,14 +30,15 @@ import { FormsModule } from '@angular/forms';
 NavBarComponent,
     AboutComponent,
     ProductComponent,
+    CartComponent,
     ContactComponent,
     OrderTrackingComponent,
     ContactUsComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     FormsModule,
     AngularFireAuthModule,
     HttpClientModule,

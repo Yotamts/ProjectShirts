@@ -1,6 +1,6 @@
 
 <!--nav bar-->
-<app-nav-bar></app-nav-bar>
+<app-nav-bar [users]="users" (userToParent)="userFromNav($event)" ></app-nav-bar>
 
 
 <div id="light" class="white_content"> <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" style="display: block; color: black; "><i class="far fa-times-circle"></i></a>
@@ -20,15 +20,15 @@
     </select>
     <br/>
     מספר
-    <input type="number" min="0" max="99" value="0" id="number"  style="width: 50px; margin-right: 2px; "> 
+    <input type="number" min="0" max="99" value="0" id="number" #number  style="width: 50px; margin-right: 2px; "> 
     <br/>
     שם
-    <input type="text"  id="name" style="margin-right: 18px;"> 
+    <input type="text" #name  id="name" style="margin-right: 18px;"> 
     <br/>
      שרוול ארוך
-     <input type="checkbox" value="long" id="long" > 
+     <input type="checkbox" #long value="long" id="long" > 
    
-     <button type="button"  class="btn btn-outline-warning" style="display: block; margin-top: 20px; margin-right: 248px;" [disabled]=!tepmBool> <i class="fas fa-shopping-cart"   ></i>הוסף לסל </button>
+     <button type="button"  class="btn btn-outline-warning" style="display: block; margin-top: 20px; margin-right: 248px;" [disabled]=!tepmBool (click)="addToCart(shirtSize.value,number.value,name.value,long.value)" > <i class="fas fa-shopping-cart"  ></i>הוסף לסל </button>
      <p *ngIf="!tepmBool" id="stock2" style="color: red;text-align: center; " >אזל המלאי</p>
   </form>
    
