@@ -58,3 +58,49 @@ th, td{
 #delSpan{
     margin-left: 20px;
 }
+
+input, select{
+    margin-left: 20px;
+    
+}
+
+.black_overlay {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .80;
+    filter: alpha(opacity=80);
+  }
+  .white_content {
+      direction: rtl;
+    display: none;
+    position: sticky;
+    top: 0% ;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    padding: 16px;
+    border: 16px solid rgba(128, 156, 241, 0.753);
+    background-color: white;
+    z-index: 1002;
+    overflow: auto;
+  }
+
+  #fade{
+      height: 900%;
+  }
+
+  #newForm input{
+      display: block;
+  }
+
+  #outOfStockP:hover{
+      color: red;
+      font-weight: bolder;
+  }

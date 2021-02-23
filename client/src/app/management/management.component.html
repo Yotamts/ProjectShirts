@@ -1,8 +1,44 @@
 <app-nav-bar  ></app-nav-bar>
+
+<div id="light" class="white_content"> <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" style="display: block; color: black; "><i class="far fa-times-circle"></i></a>
+  <h1 style="text-align: center;">הוסף מוצר</h1>
+  <form id="newForm">
+    <select  aria-label="Default select example"  name="leagues" id="leagues_slct"  #newLeagues_slct style="direction: rtl;"  >
+                
+        <option value="England" >הליגה האנגלית</option>
+        <option value="spain">הליגה הספרדית</option>
+        <option value="France">הליגה הצרפתית</option>
+        <option value="germany">הליגה הגרמנית</option>
+        <option value="italy">הליגה האיטלקית</option>
+      </select>
+      <br/>
+      <label for="newTeam">קבוצה</label>
+      <input type="text"  #newTeam>
+      <label for="newTitle">כותרת</label>
+      <input type="text"  #newTitle>
+      <label for="newID">id</label>
+      <input type="number"  #newID>
+      <label for="newPrice">מחיר</label>
+      <input type="number"  #newPrice style="width: 60px;">
+      <label for="newStock">מלאי</label>
+      <input type="number" #newStock  style="width: 50px;">
+      <label for="myPond2">הוסף תמונה</label>
+      <file-pond #myPond2 
+      [options]="pondOptions" 
+      
+      (oninit)="pondHandleInit()"
+      (onaddfile)="pondHandleAddFile($event)"
+      (onactivatefile)="pondHandleActivateFile($event)">
+     </file-pond>
+     <button type="button" class="btn btn-secondary" style="margin-right: 240px;width: 129px;" (click)="newShirt(newID.value,newLeagues_slct.value,newTeam.value,newTitle.value, newStock.value, newPrice.value)">הוסף</button>
+  </form>
+</div>
+<div id="fade" class="black_overlay"></div>
 <aside>
+    <button (click)="showProducts()" id="productsBTN">מוצרים</button>
     <button (click)="showUsers()" id="usersBTN">משתמשים</button>
     <button (click)="showOrders()" id="ordersBTN">הזמנות</button>
-    <button (click)="showProducts()" id="productsBTN">מוצרים</button>
+    
 </aside>
 
 <div id="usersDiv" style="display: none; ;">
@@ -45,12 +81,14 @@
 </div>
 <div id="productsDiv" style="display: none;">
     <aside id="aside2">
+        <button  id="newProBTN" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">מוצר חדש</button>
         
     </aside>
     
-    <h1 style="text-align: center;">ניהול מוצרים</h1>
+    <h1 style="text-align: center;margin-left: 217px;">ניהול מוצרים</h1>
+    <p style="text-align: center;" id="outOfStockP" (click)="outOf()">{{outOfStock}} מוצרים אזלו מהמלאי</p>
     <div class="search" style="text-align: center; margin-bottom: 40px;">
-        <input type="text" #find placeholder="חיפוש " (keyup)="findUser2(find.value)">
+        <input type="text" #find2 placeholder="חיפוש " (keyup)="findshirt(find2.value)">
     </div>
     <div class="tableDiv">
     <table style="margin: auto; text-align: center;" *ngFor="let shirt of shirts let i = index " [attr.data-index]="i" >
@@ -61,25 +99,59 @@
         
      </tr>
      
-     <tr id="shirt{{i}}" class="trBig" style="display: none; background-color: white;"  >
+     <tr id="shirt{{i}}" class="trBig" style="display: none; background-color: white; border: solid gold;"  >
         <td colspan=4> <div style="text-align: right;">
             
-            <div style="display: inline-block; margin-left: 50px;">
+            <div style="display: inline-block; margin-left: 50px; width: 196px; float: right;" >
                 <i class="fas fa-times" (click)="unshowShirtDet(i)" style="float: right;"></i>
                 <img src="{{shirt.img}}" width="200px" height="200px" style="margin-top: 20px;">
-                <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="inputGroupFile02" style= "height: 31px;width: 270px;padding-top: 2px;margin-top: 10px;">
-                  </div>
-                  <button type="button" class="btn btn-outline-info" style="display: block; margin: auto;" #imgUp (click)="imgUpdate(imgUp.name)">עדכן תמונה</button>
+                
+                 
+                  <file-pond #myPond 
+                  [options]="pondOptions" 
+                  
+                  (oninit)="pondHandleInit()"
+                  (onaddfile)="pondHandleAddFile($event)"
+                  (onactivatefile)="pondHandleActivateFile($event)">
+                 </file-pond>
+                  
             </div>
-            <div style="display: inline-block;"><div class="form-check form-switch" style="text-align: right; ">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" style="text-align: right;">
-                <label class="form-check-label" for="flexSwitchCheckDefault">במלאי</label>
+            
+            <div style="display: inline-block;  width: 600px; height: 305px; text-align: right; margin-top: 30px; ">
+              
+        
+              <select  aria-label="Default select example"  name="leagues" id="leagues_slct" value="{{shirt.league}}" #leagues_slct style="direction: rtl;"  >
+                
+                <option value="England" >הליגה האנגלית</option>
+                <option value="spain">הליגה הספרדית</option>
+                <option value="France">הליגה הצרפתית</option>
+                <option value="germany">הליגה הגרמנית</option>
+                <option value="italy">הליגה האיטלקית</option>
+              </select>
+              קבוצה
+              <input type="text" value="{{shirt.team}}" #team>
+              <br/>
+              <br/>
+              שם
+              <input type="text" value="{{shirt.title}}" #title>
+              מחיר
+              <input type="number" value="{{shirt.price}}" #price style="width: 60px;">
+              מלאי
+              <input type="number" value="{{shirt.stock}}" #stock  style="width: 50px;">
+              <div class="form-check form-switch" style="margin-top: 10px;" >
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" style="text-align: right;margin-left: 478px;" #stockBool  [(ngModel)]="shirt.in_stock" (click)="stockChange(i)" >
+                <label class="form-check-label" for="flexSwitchCheckDefault" style="text-align: left;">במלאי</label>
+              </div> 
+              <div style="display: block;  margin-top: 10px; margin-bottom: 10px;">
+                <input type="number"  #add min="0"  style="width: 50px;;height: 33px;">
+                <button type="button" class="btn btn-warning" (click)="addToStock(i,add.value)">+ הוסף למלאי</button>
               </div>
-              <button type="button" class="btn btn-outline-info">הוסף למלאי</button>
-              <button type="button" class="btn btn-outline-primary">ערוך</button>
-              <button type="button" class="btn btn-outline-danger">הסר מוצר</button>
+              <div style="margin-top: 20px; text-align: center;">
+                <button type="button" class="btn btn-warning" style="width: 120px;margin-bottom: 10px;" (click)="updateShirt(i,leagues_slct.value,team.value,title.value, stock.value, price.value)">שמור</button>
+                <button type="button" class="btn btn-danger" style="display: block; margin: auto;" (click)=" delShirt(i)">הסר מוצר</button>
+              </div>
             </div>
+           
             
             
                 
@@ -97,4 +169,38 @@
 </div>
 <div id="ordersDiv" style="display: none;">
     <h1 style="text-align: center;">ניהול הזמנות</h1>
+    <p style="text-align: center;" id="outOfStockP" (click)=" flags()">{{flag}} הזמנות במעקב </p>
+    <div class="search" style="text-align: center; margin-bottom: 40px;">
+        <input type="text" #find3 placeholder="חיפוש " (keyup)="findOrder(find3.value)">
+    </div>
+    <div class="tableDiv">
+    <table style="margin: auto; text-align: center;" *ngFor="let order of orders let i = index " [attr.data-index]="i" >
+        <tr *ngIf="i==0"><th style="width: 70px !important;">id</th><th>תאריך</th><th>סטטוס</th><th>איזור</th><th>כתובת</th><th style="width: 50px !important;">דירה</th><th>לקוח</th><th>מעקב</th> 
+
+     <tr class="trtr" (click)="showOrderDet(i)"   >
+        <td style="width: 70px !important;">{{order.id}}</td><td><p>{{order.date}}</p></td><td><p>{{order.status}}</p></td><td><p>{{order.area}}</p></td><td><p>{{order.address}}</p></td><td style="width: 50px !important;"><p>{{order.apartment}}</p></td><td><p>{{order.customer_name}}</p></td><td><img src='assets/img/flag{{order.flag}}.png' width="30px" height="30px"></td>
+        
+     </tr>
+     
+     <tr id="order{{i}}" class="trBig" style="display: none;" >
+        <td colspan=8> <div>
+            <div style="text-align: right;" >
+                <i class="fas fa-times" (click)="unshowOrderDet(i)" style="float: right;"></i>
+                <br/>
+                <h6 style="text-decoration: underline;" > הזמנה : </h6> 
+            <p *ngFor="let a of order.items let j = index " [attr.data-index]="j">{{a.title}} <span style="font-weight: bolder; "> {{a.price}} ש"ח</span></p> 
+            <h6 style="text-decoration: underline;" > הערות :</h6> 
+            <p>{{order.remarks}}</p>
+             </div>
+        </div>
+           
+          
+        </td>
+        
+            
+          
+     </tr>
+
+     </table>
+    </div>
 </div>

@@ -21,7 +21,10 @@
     "@angular/platform-browser-dynamic": "~9.0.0",
     "@angular/router": "~9.0.0",
     "angularfire2": "^5.4.2",
+    "filepond": "^4.25.1",
+    "filepond-plugin-file-validate-type": "^1.2.5",
     "firebase": "^7.14.4",
+    "ngx-filepond": "^6.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

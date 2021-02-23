@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './about/about.component';
+import { FilePondModule, registerPlugin } from 'ngx-filepond';
+
 
 
 
@@ -24,6 +26,8 @@ import { FormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { ManagementComponent } from './management/management.component';
 import { PayComponent } from './pay/pay.component';
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+registerPlugin(FilePondPluginFileValidateType);
 
 @NgModule({
   declarations: [
@@ -47,6 +51,7 @@ NavBarComponent,
     AngularFireAuthModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FilePondModule
   
   ],
   providers: [],

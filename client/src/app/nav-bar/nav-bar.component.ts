@@ -164,38 +164,40 @@ convertUser(user){
   
   ngOnInit(): void {
   
-    this.UsersService2.getAll().subscribe(users => this.users2 = users);
-    firebase.initializeApp;
-    firebase2.initializeApp;
-    this.userService.getCurrentUser().then(user => {
-      let bool =this.userService.isOnline();
-      if(bool){
-        document.getElementById("orderTracking").setAttribute('href', 'http://localhost:4200/ordertracking');
-        document.getElementById("cart1").setAttribute('href', 'http://localhost:4200/cart');
-        this.myUser=user;
-        let bool=false;
-        let tempUser:User;
-      
-      this.convertedUser=this.convertUser(this.myUser);
-     
-      this.checkCart();
-        this.moveToParent();
-        this.movePriceToParent();
-       
+    this.UsersService2.getAll().subscribe(users =>{this.users2 = users;
+      firebase.initializeApp;
+      firebase2.initializeApp;
+      this.userService.getCurrentUser().then(user => {
+        let bool =this.userService.isOnline();
+        if(bool){
+          document.getElementById("orderTracking").setAttribute('href', 'http://localhost:4200/ordertracking');
+          document.getElementById("cart1").setAttribute('href', 'http://localhost:4200/cart');
+          this.myUser=user;
+          let bool=false;
+          let tempUser:User;
         
-        console.log(this.convertedUser);
-        console.log(this.convertedUser.shoppingCart);
-        console.log(this.myUser.displayName);
-        this.guestName=this.myUser.displayName;
-        (document.getElementById("logOut_span")).style.display="inline";
-      }
-      else {
-        document.getElementById("cart").style.cursor="no-drop";
-      document.getElementById("orderTracking").style.cursor="no-drop";}
-      this.updatePrice();
-      this.isManage();
-    })
+        this.convertedUser=this.convertUser(this.myUser);
+       
+        this.checkCart();
+          this.moveToParent();
+          this.movePriceToParent();
+         
+          
+          console.log(this.convertedUser);
+          console.log(this.convertedUser.shoppingCart);
+          console.log(this.myUser.displayName);
+          this.guestName=this.myUser.displayName;
+          (document.getElementById("logOut_span")).style.display="inline";
+        }
+        else {
+          document.getElementById("cart").style.cursor="no-drop";
+        document.getElementById("orderTracking").style.cursor="no-drop";}
+        this.updatePrice();
+        this.isManage();
+      })
+      
     
+    } );
   }
 
 }
