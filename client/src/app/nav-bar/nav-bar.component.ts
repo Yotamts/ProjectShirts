@@ -10,6 +10,7 @@ import { OrderTrackingComponent } from '../order-tracking/order-tracking.compone
 import { Shirt } from '../shirt';
 import { User } from '../user';
 import { UsersService } from '../users.service';
+import { ShirtsService } from '../shirts.service';
 
 
 
@@ -23,10 +24,13 @@ import { UsersService } from '../users.service';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router, private userService:UserServiceService, private UsersService2:UsersService) { }
+  constructor(private auth: AuthService, private router: Router, private userService:UserServiceService, private UsersService2:UsersService, private shirtsApi:ShirtsService) { }
   @Input() users:User[];
   @Output() userToParent = new EventEmitter();
+  @Output() priceToParent = new EventEmitter();
+  
 
+  
   users2:User[]=[];
  guestName:string="אורח/ת";
  myUser;
@@ -34,6 +38,14 @@ export class NavBarComponent implements OnInit {
  //user=this.userService.getCurrentUser();
 myUsersArr:User[]=[];
 cartCount=1;
+price=0;
+
+updatePrice(){
+  this.price=0;
+  for(let i = 0; i<this.convertedUser.shoppingCart.length;i++){
+    this.price=this.price+this.convertedUser.shoppingCart[i].price;
+  }
+}
  
   checkCart(){
     
@@ -46,14 +58,21 @@ cartCount=1;
       this.cartCount=this.convertedUser.shoppingCart.length;
       document.getElementById("cartCount").style.display="unset";
       console.log("2");
+      this.updatePrice();
     }
     
     
   }
-
+isManage(){
+  if(this.myUser.email=="yotamts@gmail.com")  document.getElementById("manageA").style.display="unset";
+}
  moveToParent(){
    this.userToParent.emit(this.convertedUser);
  }
+ movePriceToParent(){
+  this.priceToParent.emit(this.price);
+}
+
  
  logout(){
   this.auth.googleLogout().then(data => {
@@ -85,6 +104,7 @@ convertUser(user){
   let purchasesArr:Shirt[]=[];
   let tempuser:User={name:user.displayName,mail:user.email,isManager:false,isGuest:true,address:null,phone:null,shoppingCart:cartArr,purchases:purchasesArr}
   return tempuser;
+  this.updatePrice();
   location.reload();
   
 }
@@ -105,7 +125,8 @@ convertUser(user){
      for(let i = 0 ; i<this.users.length; i++){
        if(this.users2[i].mail == user.user.email){
          tepm =true;
-         
+         this.updatePrice();
+         this.isManage();
     location.reload();
          break;
        }
@@ -142,6 +163,7 @@ convertUser(user){
   }
   
   ngOnInit(): void {
+  
     this.UsersService2.getAll().subscribe(users => this.users2 = users);
     firebase.initializeApp;
     firebase2.initializeApp;
@@ -158,6 +180,8 @@ convertUser(user){
      
       this.checkCart();
         this.moveToParent();
+        this.movePriceToParent();
+       
         
         console.log(this.convertedUser);
         console.log(this.convertedUser.shoppingCart);
@@ -168,6 +192,8 @@ convertUser(user){
       else {
         document.getElementById("cart").style.cursor="no-drop";
       document.getElementById("orderTracking").style.cursor="no-drop";}
+      this.updatePrice();
+      this.isManage();
     })
     
   }

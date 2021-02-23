@@ -28,7 +28,7 @@
      שרוול ארוך
      <input type="checkbox" #long value="long" id="long" > 
    
-     <button type="button"  class="btn btn-outline-warning" style="display: block; margin-top: 20px; margin-right: 248px;" [disabled]=!tepmBool (click)="addToCart(shirtSize.value,number.value,name.value,long.value)" > <i class="fas fa-shopping-cart"  ></i>הוסף לסל </button>
+     <button type="button"  class="btn btn-outline-warning" style="display: block; margin-top: 20px; margin-right: 248px;" [disabled]=!tepmBool (click)="addToCart(shirtSize.value,number.value,name.value,long.checked)" > <i class="fas fa-shopping-cart"  ></i>הוסף לסל </button>
      <p *ngIf="!tepmBool" id="stock2" style="color: red;text-align: center; " >אזל המלאי</p>
   </form>
    

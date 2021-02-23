@@ -1,0 +1,100 @@
+<app-nav-bar  ></app-nav-bar>
+<aside>
+    <button (click)="showUsers()" id="usersBTN">משתמשים</button>
+    <button (click)="showOrders()" id="ordersBTN">הזמנות</button>
+    <button (click)="showProducts()" id="productsBTN">מוצרים</button>
+</aside>
+
+<div id="usersDiv" style="display: none; ;">
+    <aside id="aside2">
+        
+    </aside>
+    
+    <h1 style="text-align: center;">ניהול משתמשים</h1>
+    <div class="search" style="text-align: center; margin-bottom: 40px;">
+        <input type="text" #find placeholder="חיפוש " (keyup)="findUser2(find.value)">
+    </div>
+    <div class="tableDiv">
+    <table style="margin: auto;" *ngFor="let user of tempUsers let i = index " [attr.data-index]="i" >
+        <tr *ngIf="i==0"><th>שם</th><th>Email</th><th>כתובת</th><th>טלפון</th> 
+
+     <tr class="trtr" (click)="showUserDet(i)"   >
+        <td>{{user.name}}</td><td><p>{{user.mail}}</p></td><td><p>{{user.address}}</p></td><td><p>{{user.phone}}</p></td>
+        
+     </tr>
+     
+     <tr id="user{{i}}" class="trBig" style="display: none;" >
+        <td colspan=4> <div>
+            <div >
+                <i class="fas fa-times" (click)="unshowUserDet(i)"></i>
+                 <h6 style="text-decoration: underline;">סל קניות:</h6> 
+            <p *ngFor="let a of user.shoppingCart let j = index " [attr.data-index]="j"><span id="delSpan" (click)=" delFromCart(i,j)"><i class="fas fa-trash-alt"></i></span>{{a.title}} <span style="font-weight: bolder; "> {{a.price}} ש"ח</span></p> 
+            <h6 style="text-decoration: underline;" > היסטורית קניות:</h6> 
+            <p *ngFor="let a of user.purchases">{{a.title}} <span style="font-weight: bolder;"> {{a.price}} ש"ח</span></p> </div>
+        </div>
+           
+          
+        </td>
+        
+            
+          
+     </tr>
+
+     </table>
+    </div>
+</div>
+<div id="productsDiv" style="display: none;">
+    <aside id="aside2">
+        
+    </aside>
+    
+    <h1 style="text-align: center;">ניהול מוצרים</h1>
+    <div class="search" style="text-align: center; margin-bottom: 40px;">
+        <input type="text" #find placeholder="חיפוש " (keyup)="findUser2(find.value)">
+    </div>
+    <div class="tableDiv">
+    <table style="margin: auto; text-align: center;" *ngFor="let shirt of shirts let i = index " [attr.data-index]="i" >
+        <tr *ngIf="i==0"><th></th><th>מוצר</th><th>מחיר</th><th>כמות</th><th>מלאי</th> 
+
+     <tr class="trtr" (click)="showProDet(i)"   >
+        <td><img src="{{shirt.img}}" width="50px" height="50px" ></td><td><p>{{shirt.title}}</p></td><td><p>{{shirt.price}}</p></td><td><p>{{shirt.stock}}</p></td><td><p><img src='assets/img/V{{shirt.in_stock}}.jpg' width="20px" height="20px" ></p></td>
+        
+     </tr>
+     
+     <tr id="shirt{{i}}" class="trBig" style="display: none; background-color: white;"  >
+        <td colspan=4> <div style="text-align: right;">
+            
+            <div style="display: inline-block; margin-left: 50px;">
+                <i class="fas fa-times" (click)="unshowShirtDet(i)" style="float: right;"></i>
+                <img src="{{shirt.img}}" width="200px" height="200px" style="margin-top: 20px;">
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="inputGroupFile02" style= "height: 31px;width: 270px;padding-top: 2px;margin-top: 10px;">
+                  </div>
+                  <button type="button" class="btn btn-outline-info" style="display: block; margin: auto;" #imgUp (click)="imgUpdate(imgUp.name)">עדכן תמונה</button>
+            </div>
+            <div style="display: inline-block;"><div class="form-check form-switch" style="text-align: right; ">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" style="text-align: right;">
+                <label class="form-check-label" for="flexSwitchCheckDefault">במלאי</label>
+              </div>
+              <button type="button" class="btn btn-outline-info">הוסף למלאי</button>
+              <button type="button" class="btn btn-outline-primary">ערוך</button>
+              <button type="button" class="btn btn-outline-danger">הסר מוצר</button>
+            </div>
+            
+            
+                
+        </div>
+           
+          
+        </td>
+        
+            
+          
+     </tr>
+
+     </table>
+    </div>
+</div>
+<div id="ordersDiv" style="display: none;">
+    <h1 style="text-align: center;">ניהול הזמנות</h1>
+</div>

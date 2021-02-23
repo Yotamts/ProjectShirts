@@ -22,6 +22,8 @@ import { OrderTrackingComponent } from './order-tracking/order-tracking.componen
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
+import { ManagementComponent } from './management/management.component';
+import { PayComponent } from './pay/pay.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ NavBarComponent,
     CartComponent,
     ContactComponent,
     OrderTrackingComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    ManagementComponent,
+    PayComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),

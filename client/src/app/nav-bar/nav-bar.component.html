@@ -2,15 +2,15 @@
     <div id="nav2">
     
       
-      
       <i class="fas fa-user" id="userIcon" (click)="loginWithGoogle()" style="cursor: pointer;"></i>
-      <span id="cartCount">{{cartCount}}</span>
+      <span id="cartCount" >{{cartCount}}</span>
       <a  href="javascript:window.location.href=window.location.href" id="cart1" (click)="goToCart()"><i class="fas fa-shopping-cart" id="cart"    style="cursor: pointer; "></i> </a>
       
       <a href="" class="nav_a">דף הבית</a>
       <a href="http://localhost:4200/about" class="nav_a"  >אודותינו</a>
       <a  href="javascript:window.location.href=window.location.href"  class="nav_a" id="orderTracking" (click)="goToTracking()" style="  cursor: pointer; " >מעקב אחר הזמנה</a>
       <a href="http://localhost:4200/contact" class="nav_a">צור קשר</a>
+      <a href="http://localhost:4200/manage" class="nav_a" id="manageA" style="color: black; display: none;"> ניהול </a>
 <br/>
 <p style="font-family: 'Rubik', sans-serif;"> שלום<span id="username" style="font-family: 'Rubik', sans-serif;">{{guestName}}</span> <span id="logOut_span" style="display: none; font-weight: bolder; cursor: pointer;" (click)="logout() " >(התנתק/י)</span> </p>
       

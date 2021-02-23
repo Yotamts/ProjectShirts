@@ -1,0 +1,58 @@
+:host{
+    direction: rtl;
+}
+
+#img{
+    height: 100px;
+    width: 100px;
+}
+#img2{
+    height: 50px;
+    width: 50px;
+}
+
+h1{
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 40px;
+    
+}
+
+table{
+  
+    direction: rtl;
+    background-color: white;
+    margin: auto;
+
+}
+
+td{
+    text-align: center;
+    border: solid black;
+    border-width: 1px;
+    min-width: 90px;
+}
+th{
+    text-align: center;
+}
+
+.remove{
+    background-color: transparent;
+    border: transparent;
+}
+i:hover{
+    color: red;
+}
+
+#price{
+    
+ 
+  
+    margin: auto;
+    border-width: 5px;
+    padding-top:5px;
+    padding-right: 5px;
+    margin-top: 30px;
+   
+    font-weight: bolder;
+}

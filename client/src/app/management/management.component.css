@@ -1,0 +1,60 @@
+:host{
+    direction: rtl;
+}
+aside{
+    float: right;
+    background-color: gold;
+    width: 150px;
+    background-image: linear-gradient(
+    45deg
+    ,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+}
+
+
+
+aside button{
+    background-color: transparent;
+    display: block;
+    border-color: transparent;
+    height: 50px;
+    width: 100%;
+    
+}
+
+aside button:hover{
+    background-color: rgba(255, 255, 255, 0.582);
+}
+
+h1{
+    
+    margin: auto;
+    margin-bottom: 50px;
+}
+ #aside2{
+     background-color: rgba(128, 156, 241, 0.753);
+     margin-left: 50px;
+ }
+
+th, td{
+    width: 300px;
+}
+
+.trtr:hover{
+    background-color:rgba(128, 156, 241, 0.753) ;
+}
+ .tableDiv{
+     width: 999px;
+ }
+
+ .trBig{
+     background-color: rgb(218, 213, 213);
+     
+ }
+
+ i:hover{
+    color: red;
+}
+
+#delSpan{
+    margin-left: 20px;
+}

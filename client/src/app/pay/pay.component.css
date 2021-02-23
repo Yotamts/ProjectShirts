@@ -1,0 +1,43 @@
+header{
+    direction: rtl;
+    
+    height: 60px;
+}
+
+.steps{
+    display: inline;
+    margin-right: 25px;
+    border-radius: 100%;
+   margin-top: 15px;
+   color: gold;
+   font-weight: bolder;
+   background-color: white;
+    border: solid gold;
+    
+    
+}
+.steps2{
+    display: inline;
+    margin-right: 25px;
+    border-radius: 100%;
+   margin-top: 15px;
+   color: white;
+   font-weight: bolder;
+   background-color: gold;
+    border: solid gold;
+    
+    
+}
+.petailsLabel{
+    margin-right: 50px;
+}
+
+.petailsInput{
+    margin-right: 20px;
+    margin-bottom: 30px;
+} 
+
+#nextBtn{
+    display: block;
+    margin: auto;
+}

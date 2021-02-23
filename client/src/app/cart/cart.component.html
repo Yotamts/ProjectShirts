@@ -1,1 +1,27 @@
-<app-nav-bar></app-nav-bar>
+<app-nav-bar (userToParent)="userFromNav($event)" (priceToParent)="priceFromNav($event)"></app-nav-bar>
+<br/>
+<h1>סל קניות</h1>
+
+    <br/>
+<table>
+   <tr><th></th><th></th><th>מידה</th><th>מספר</th><th>שם</th><th>שרוול ארוך</th><th>מחיר</th></tr> 
+<tr *ngFor="let shirt of myUser.shoppingCart let i = index " [attr.data-index]="i" style="direction: rtl; " >
+
+   <td><img src="{{shirt.img}}" id="img"></td><td><p>{{shirt.title}}</p></td><td><p>{{shirt.size}}</p></td><td><p>{{shirt.num}}</p></td><td><p>{{shirt.name}}</p></td><td><img src='assets/img/V{{shirt.long_sleeves}}.jpg' id="img2"></td><td><p style="font-weight: bold;"> ₪{{shirt.price}} </p></td><td style="border: transparent;"><button class="remove" (click)="del(i)"><i class="fas fa-trash-alt"></i></button> </td>
+   <br/>
+  
+  
+ 
+  
+</tr>
+
+<p id="price" style="display: inline-block;" >סה"כ : ₪{{price}} </p>
+
+<button type="button" class="btn btn-outline-warning" style="display: inline-block; margin-right: 30px;">מעבר לתשלום</button>
+<br/>
+<br/>
+
+
+</table>
+
+    

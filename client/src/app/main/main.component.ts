@@ -45,7 +45,7 @@ priceSort(v){
 }
 
 
-addToCart(size, num, name,long ){
+addToCart(size, num, name,long:boolean ){
  this.tempshirt.size=size;
  this.tempshirt.num=num;
  this.tempshirt.name=name;
@@ -61,7 +61,7 @@ addToCart(size, num, name,long ){
  let shirt1:Shirt = this.shirts.find(element => element.title == this.tempshirt.title);
 
  shirt1.stock--;
- if(shirt1.stock=1) shirt1.in_stock=false;
+ if(shirt1.stock==0) shirt1.in_stock=false;
  this.shirtsApi.update(shirt1).subscribe(res => {
   console.log("shirt added");
   location.reload();
@@ -156,6 +156,8 @@ if(this.shirts[i].team==value) this.filterShirts.push(this.shirts[i]);
     this.usersApi.getAll().subscribe(users => this.users = users);
     this.ordersApi.getAll().subscribe(orders => this.orders = orders);
     this.shirtsApi.getAll().subscribe(shirts => this.shirts = shirts);
+   
+    
     this.shirtsApi.getAll().subscribe(shirts => this.filterShirts = shirts);
 
     //this.TempCart =this.myUser.shoppingCart;

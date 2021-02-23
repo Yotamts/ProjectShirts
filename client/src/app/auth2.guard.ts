@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot , Router} from '@angular/router';
 import { Observable } from 'rxjs';
@@ -8,7 +9,7 @@ import { UsersService } from './users.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class Auth2Guard implements CanActivate {
   // tslint:disable-next-line: no-shadowed-variable
   constructor(private UsersService: UserServiceService, private router: Router) {}
   canActivate(
@@ -17,6 +18,7 @@ export class AuthGuard implements CanActivate {
       (resolve,reject) =>{
         this.UsersService.getCurrentUser().then(user =>{
           if(user){
+            if(user.email=="yotamts@gmail.com")
             return resolve(true)
           }
           else{

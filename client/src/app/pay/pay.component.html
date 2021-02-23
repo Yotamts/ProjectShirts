@@ -1,0 +1,29 @@
+<app-nav-bar (userToParent)="userFromNav($event)" (priceToParent)="priceFromNav($event)"></app-nav-bar>
+<header style="text-align: center;" >
+ <button  id="btn1"  [ngClass]="{'steps2': textClass == 'steps', 'steps': textClass=='steps2'}">1</button>
+ <button  id="btn2"  [ngClass]="{'steps': textClass == 'steps', 'steps2': textClass=='steps2'}">2</button>
+</header>
+<div id="step1" style="direction: rtl; text-align: center;" >
+    <h2 style="text-decoration: underline; text-align: center ;margin-bottom: 50px;">אימות נתונים</h2>
+    
+    <form>
+        <label for="name" class="petailsLabel"> שם: </label>
+        <input type="text"  name="name"  [(ngModel)]="myUser.name" class="petailsInput" required>
+        <label for="email" class="petailsLabel"> מייל: </label>
+        <input type="email"  name="email"  [(ngModel)]="myUser.mail" class="petailsInput" required>
+        <label for="phone" class="petailsLabel"> טלפון: </label>
+        <input type="tel"  name="phone"  [(ngModel)]="myUser.phone" class="petailsInput" required>
+        <label for="adress" class="petailsLabel"> כתובת: </label>
+        <input type="text"  name="adress"  [(ngModel)]="myUser.address" class="petailsInput" required>
+        <button type="button" class="btn btn-outline-warning" id="nextBtn" (click)="nextStep()">המשך</button>
+      
+    </form>
+</div>
+<div id="step2" style="display: none; text-align: center;">
+    <h3 id="price" style=" text-align: center;" >סה"כ : ₪{{price}} </h3>
+    <p>אל: {{myUser.name}}  </p>
+    <p>כתובת: {{myUser.address}}  </p>
+    <p>טלפון: {{myUser.phone}}  </p>
+    <p style="font-weight: bolder;">  עבור - {{myUser.shoppingCart.length}} מוצרים</p>
+    <button type="button" class="btn btn-outline-warning" id="nextBtn" (click)="backStep()">חזור</button>
+</div>
