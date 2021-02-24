@@ -94,6 +94,7 @@ input, select{
 
   #fade{
       height: 900%;
+     
   }
 
   #newForm input{
@@ -104,3 +105,12 @@ input, select{
       color: red;
       font-weight: bolder;
   }
+
+  .oredInput{
+      display: block;
+      border: transparent;
+  }
+
+  
+
+  

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Shirt } from '../shirt';
 import { ShirtsService } from '../shirts.service';
 import { User } from '../user';
@@ -11,7 +12,7 @@ import { UsersService } from '../users.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private usersApi:UsersService, private shirtsApi:ShirtsService) { }
+  constructor(private usersApi:UsersService, private shirtsApi:ShirtsService, private router:Router) { }
 
   myUser:User;
   num:number=1;
@@ -47,12 +48,12 @@ export class CartComponent implements OnInit {
         
        });
         });
-       
-       
-        
-        
-        
 
+       
+
+      }
+      goToPay(){
+        this.router.navigate(['pay']);
       }
   ngOnInit(): void {
     

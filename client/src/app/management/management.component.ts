@@ -52,6 +52,7 @@ export class ManagementComponent implements OnInit {
     console.log('A file was activated', event)
   }
    
+  
 
   
 
@@ -156,8 +157,45 @@ tempStock:boolean=true;
      
     });
    }
+
+   updateOrder(i,flag,status,area, address, apartment,customer_name,remarks,id){
+     let order1:Order=this.orders[i];
+     console.log(order1);
+     order1.flag=flag;
+     order1.status=status;
+     order1.area=area;
+     order1.address=address;
+     order1.apartment=apartment;
+     order1.customer_name=customer_name;
+     order1.id=id;
+     order1.remarks= remarks;
+     
+    this.orderApi.update(order1).subscribe(res => {
+      console.log("order updated");
+
+     
+    });
+   }
    imgUpdate(v){
     console.log(v);
+   }
+
+   flagChange(i){
+   
+if(this.orders[i].flag==true)this.orders[i].flag=false;
+else this.orders[i].flag=true;
+
+   }
+
+   orderStatus(v){
+    
+      this.orderApi.getAll().subscribe(orders =>{
+        this.orders = orders;
+        if(v!="all")
+        this.orders =this.orders.filter(element => element.status==v );
+      } );
+     
+     
    }
    addToStock(i,v){
      let y = Number(this.shirts[i].stock);

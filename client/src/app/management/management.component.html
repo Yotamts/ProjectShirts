@@ -173,12 +173,23 @@
     <div class="search" style="text-align: center; margin-bottom: 40px;">
         <input type="text" #find3 placeholder="חיפוש " (keyup)="findOrder(find3.value)">
     </div>
+    <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="text-align: center;margin-bottom: 20px;">
+        
+        <button type="button" class="btn btn-warning" (click)="orderStatus('all')" >הכל</button>
+        <button type="button" class="btn btn-warning" (click)="orderStatus('waiting')">ממתין</button>
+        <button type="button" class="btn btn-warning" (click)="orderStatus('onTheWay')">יצא למשלוח</button>
+        <button type="button" class="btn btn-warning" (click)="orderStatus('treatment')">בטיפול</button>
+        <button type="button" class="btn btn-success" (click)="orderStatus('delivered')">נמסר</button>
+        <button type="button" class="btn btn-danger" style="margin-left: 400px;"(click)="orderStatus('canceled')" > בוטל</button>
+        
+       
+      </div>
     <div class="tableDiv">
     <table style="margin: auto; text-align: center;" *ngFor="let order of orders let i = index " [attr.data-index]="i" >
         <tr *ngIf="i==0"><th style="width: 70px !important;">id</th><th>תאריך</th><th>סטטוס</th><th>איזור</th><th>כתובת</th><th style="width: 50px !important;">דירה</th><th>לקוח</th><th>מעקב</th> 
 
      <tr class="trtr" (click)="showOrderDet(i)"   >
-        <td style="width: 70px !important;">{{order.id}}</td><td><p>{{order.date}}</p></td><td><p>{{order.status}}</p></td><td><p>{{order.area}}</p></td><td><p>{{order.address}}</p></td><td style="width: 50px !important;"><p>{{order.apartment}}</p></td><td><p>{{order.customer_name}}</p></td><td><img src='assets/img/flag{{order.flag}}.png' width="30px" height="30px"></td>
+        <td style="width: 70px !important;">{{order.id}}</td><td><p>{{order.date}}</p></td><td><p>{{order.status}}</p></td><td><p>{{order.area}}</p></td><td><p>{{order.address}}</p></td><td style="width: 50px !important;"><p>{{order.apartment}}</p></td><td><p>{{order.customer_name}}</p></td><td ><img src='assets/img/flag{{order.flag}}.png' width="30px" height="30px"></td>
         
      </tr>
      
@@ -191,6 +202,41 @@
             <p *ngFor="let a of order.items let j = index " [attr.data-index]="j">{{a.title}} <span style="font-weight: bolder; "> {{a.price}} ש"ח</span></p> 
             <h6 style="text-decoration: underline;" > הערות :</h6> 
             <p>{{order.remarks}}</p>
+             </div>
+             <hr>
+             <div id="ordersEdit" style=" background-color: rgb(248 251 255 / 82%);">
+                <div class="form-check form-switch" style="margin-top: 10px; " >
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault2" style="text-align: right;float: right;" #flagOrder  [(ngModel)]="order.flag"  >
+                    <label class="form-check-label" for="flexSwitchCheckDefault2" style="text-align: left; margin-left: 820px;">במעקב</label>
+                  </div>
+                 <form style="text-align: right;">
+                    <select  aria-label="Default select example"  name="status" class="orderStatus" value="{{order.status}}" #status style="direction: rtl; display: block; margin-bottom: 10px; font-weight: bolder; color: red;"  >
+                
+                        <option value="delivered" >נמסר</option>
+                        <option value="waiting">ממתין</option>
+                        <option value="onTheWay">יצא למשלוח </option>
+                        <option value="canceled"> בוטל</option>
+                        <option value="treatment"> בטיפול</option>
+                      </select>
+                      
+                      
+                     <label for="OrderId" style="font-weight: bolder;">ID</label>
+                    <input type="number" class="oredInput" value="{{order.id}}" #OrderId style="width: 60px;">
+                    <label for="OrderArea" style="font-weight: bolder;">איזור</label>
+                    <input type="text"  class="oredInput" value="{{order.area}}" #OrderArea >
+                    <label for="OrderArdress" style="font-weight: bolder;">כתובת</label>
+                    <input type="text"  class="oredInput" value="{{order.address}}" #OrderArdress >
+                    <label for="OrderApartment" style="font-weight: bolder;">דירה</label>
+                    <input type="number"  class="oredInput" value="{{order.apartment}}" #OrderApartment   style="width: 60px;">
+                    
+                    <label for="OrderCustomer" style="font-weight: bolder;">לקוח</label>
+                    <input type="text"  class="oredInput" value="{{order.customer_name}}" #OrderCustomer >
+<p style="font-weight: bolder; margin-bottom: 0px;">הערות</p>
+<input type="text"  class="oredInput" value="{{order.remarks}}" #remarks style="width: 904px;height: 152px;" >
+                    
+                    <button type="button" class="btn btn-primary" style="margin: auto; margin-bottom: 10px;" (click)="updateOrder(i,order.flag,status.value,OrderArea.value, OrderArdress.value, OrderApartment.value,OrderCustomer.value, remarks.value,OrderId.value)">שמור שינויים</button>
+
+                 </form>
              </div>
         </div>
            
